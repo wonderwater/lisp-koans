@@ -67,15 +67,15 @@
   (setf a 100)
   (let ((a 5)
         (b (* 10 a)))
-    (assert-equal b 50)))
+    (assert-equal b 1000)))
 
 (define-test test-let*-bindings-are-series
     "let* is like let, but successive bindings may use values of previous ones"
   (setf a 100)
   (let* ((a 5)
          (b (* 10 a)))
-    (assert-equal b 1000))
-  (assert-equal a 5))
+    (assert-equal b 50))
+  (assert-equal a 100))
 
 
 (define-test write-your-own-let-statement
@@ -92,7 +92,7 @@
   (let* ((a 121)
          ;; add more here
          (b 200)
-         (c 122)
+         (c 14841/121)
          )
     (assert-equal a 121)
     (assert-equal b 200)
