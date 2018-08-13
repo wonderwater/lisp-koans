@@ -51,6 +51,22 @@
 
 (defun score (dice)
   ; You need to write this method
+  (let  ((count-array (make-array '(10) :initial-element 0))
+         (ans 0))
+        (dolist (v dice)
+            (if (and (> v 0) (<= v 9))
+                (incf (aref count-array v))))
+        (loop for i from 1 below (array-total-size count-array)
+             do (let* ((v (aref count-array i))
+                       (q (multiple-value-bind (q r) (floor v 3) q))
+                       (r (multiple-value-bind (q r) (floor v 3) r)))
+                      (setf ans (+  (if (= i 1)
+                                        (+ (* 1000 q) (* 100 r))
+                                        (if (= i 5)
+                                            (+ (* 500 q) (* 50 r))
+                                            (* q i 100)))
+                                    ans))))
+        ans)
 )
 
 (define-test test-score-of-an-empty-list-is-zero
